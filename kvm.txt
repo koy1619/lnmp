@@ -1,0 +1,33 @@
+﻿yum install kvm libvirt python-virtinst qemu-kvm virt-viewer bridge-utils
+
+/etc/init.d/libvirtd start
+
+virsh -c qemu:///system list --all
+
+
+qemu-img create -f qcow2 -o preallocation=metadata /home/kvm/centos65-x64-mysql.qcow2 200G
+
+
+virt-install --name=gatewat-4 --ram 4096 --vcpus=4 -f /home/kvm/gateway-4.qcow2 --cdrom /home/iso/CentOS-6.5-x86_64-bin-DVD1.iso --graphics vnc,listen=0.0.0.0,port=5920, --network bridge=br0 --force --autostart
+
+virsh
+start centos6.5-x64-mysql 
+
+
+克隆
+cd /etc/libvirt/qemu
+cp -R /home/kvm/centos65-x64-dispatch.qcow2 /home/kvm/centos65-x64-dbgate.qcow2
+cp -R centos6.5-x64-gateway.xml centos6.5-x64-dbgate.xml
+vi centos6.5-x64-dbgate.xml
+virsh define centos6.5-x64-dbgate.xml
+virsh start centos6.5-x64-dbgate
+virsh list --all 
+
+rm -rf /etc/udev/rules.d/70-persistent-net.rules
+
+删除
+virsh destroy gatewat-4
+virsh undefine gatewat-4
+  
+RemoveFolder /var/lib/libvirt/images/
+RemoveFile /etc/libvirt/qemu/
