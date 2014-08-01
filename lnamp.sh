@@ -90,9 +90,9 @@ make
 make install
 
 cd $setup_dir/nginx
-tar -zxvf nginx-1.2.0.tar.gz 
-cd nginx-1.2.0
-./configure --user=www --group=www --prefix=/usr/local/nginx --with-pcre=/home/setup/nginx/pcre-8.30 --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module
+tar -zxvf nginx-1.4.4.tar.gz
+cd nginx-1.4.4
+./configure --user=www --group=www --prefix=/usr/local/nginx --with-pcre=$setup_dir/nginx/pcre-8.30 --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module
 make
 make install
 
