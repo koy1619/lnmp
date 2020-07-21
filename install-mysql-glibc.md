@@ -37,6 +37,8 @@ chkconfig --add mysqld
 chkconfig --level 2345 mysqld on
 service mysqld restart
 
+#/usr/local/mysql/bin/mysql_secure_installation
+
 ```
 
 
