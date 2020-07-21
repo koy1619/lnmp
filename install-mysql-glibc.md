@@ -33,6 +33,8 @@ grant all privileges on *.* to xiaolei @'10.10.3.%' identified by 'LX#lxiaolei' 
 flush privileges;
 
 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+sed -i '46 s#basedir=#basedir=/usr/local/mysql#'  /etc/init.d/mysqld
+sed -i '47 s#datadir=#datadir=/data/mysql/data#'  /etc/init.d/mysqld
 chkconfig --add mysqld
 chkconfig --level 2345 mysqld on
 service mysqld restart
