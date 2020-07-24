@@ -2,6 +2,8 @@
 yum -y install gcc gcc-c++ cmake vim bison patch unzip mlocate flex wget automake autoconf gd cpp gettext readline-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel libidn libidn-devel openldap openldap-devel openldap-clients openldap-servers nss_ldap expat-devel libtool libtool-ltdl-devel bison openssl-devel lsof
 ####
 
+#https://downloads.mysql.com/archives/community/
+
 wget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-5.7.12.tar.gz
 wget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-boost-5.7.12.tar.gz  #编译MySQL5.7需要boost支持，如果事先没有装好boost，就下载这个。
 wget https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz    #编译MySQL5.7需要的cmake最低版本为2.8
