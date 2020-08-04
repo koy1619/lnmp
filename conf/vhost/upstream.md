@@ -19,14 +19,19 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        
+        #支持WebSocket
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
 
-             #禁用缓存
-             proxy_buffering off;
+        #禁用缓存
+        proxy_buffering off;
 
-             #反向代理的地址
-             proxy_pass http://esb;
-             access_log  logs/esb.e-test.com.cn.access.log esb;
-             error_log  logs/esb.e-test.com.cn.error.log;
+        #反向代理的地址
+        proxy_pass http://esb;
+        access_log  logs/esb.e-test.com.cn.access.log esb;
+        error_log  logs/esb.e-test.com.cn.error.log;
         }
 }
 ```
