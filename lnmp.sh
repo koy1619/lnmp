@@ -5,11 +5,30 @@ set -e
 
 setup_dir=$(pwd)
 
+echo "alias grep='grep --color=auto'">> /etc/bashrc
+echo "PS1='\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[35;40m\]\W\[\e[0m\]]\$'">> /etc/bashrc
+
+#hostnamectl --static set-hostname  k8s-master
+
+setenforce 0
+sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+
+sed -i "s#^net.ipv4.ip_forward.*#net.ipv4.ip_forward=1#g"  /etc/sysctl.conf
+sed -i "s#^net.bridge.bridge-nf-call-ip6tables.*#net.bridge.bridge-nf-call-ip6tables=1#g"  /etc/sysctl.conf
+sed -i "s#^net.bridge.bridge-nf-call-iptables.*#net.bridge.bridge-nf-call-iptables=1#g"  /etc/sysctl.conf
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-ip6tables = 1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-iptables = 1" >> /etc/sysctl.conf
+sysctl -p
+
 yum makecache
 
 yum -y install gcc gcc-c++ make bison patch unzip pcre-devel pam-develmlocate flex wget automake autoconf gd gd-devel cpp gettext readline readline-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel libidn libidn-devel openldap openldap-devel openldap-clients openldap-servers nss_ldap expat-devel libtool libtool-ltdl-devel bison openssl openssl-devel libcurl libcurl-devel gmp gmp-devel libmcrypt libmcrypt-devel libxslt libxslt-devel gdbm gdbm-devel db4-devel libXpm-devel libX11-devel xmlrpc-c xmlrpc-c-devel libicu-devel libmemcached-devel libzip net-tools yum-utils vim telnet cmake lsof
 
 yum -y update nss
+
+
+
 
 
 #######################Install Nginx#######################
@@ -305,6 +324,8 @@ EOF
 
 }
 
+
+Install_init
 Install_nginx
 #Install_mysql55
 Install_mysql57
