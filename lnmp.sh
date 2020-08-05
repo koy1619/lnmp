@@ -127,10 +127,6 @@ cp $setup_dir/conf/my5.5.cnf  /etc/my.cnf
 /etc/rc.d/init.d/mysqld start
 /sbin/chkconfig --add mysqld
 /sbin/chkconfig --level 2345 mysqld on
-ln -s /usr/local/mysql/bin/mysql /sbin/mysql
-ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
-ln -s /usr/local/mysql/bin/mysqladmin /sbin/mysqladmin
-ln -s /usr/local/mysql/bin/mysqladmin /usr/bin/mysqladmin
 #/sbin/mysqladmin -u root password 123456
 echo "/usr/local/mysql/lib/mysql" >> /etc/ld.so.conf
 /sbin/ldconfig
