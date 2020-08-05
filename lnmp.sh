@@ -117,13 +117,13 @@ make install
 chmod +w /usr/local/mysql
 chown -R mysql:mysql /usr/local/mysql
 ln -s /usr/local/mysql/lib/libmysqlclient.so.18 /usr/lib/libmysqlclient.so.18
+cp $setup_dir/conf/my5.5.cnf  /etc/my.cnf
 /usr/local/mysql/scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/data --user=mysql
 sed -i '/# executing mysqld_safe/a\export LD_PRELOAD=/usr/local/lib/libtcmalloc.so' /usr/local/mysql/bin/mysqld_safe
 cp support-files/mysql.server /etc/rc.d/init.d/mysqld
 sed -i '46 s#basedir=#basedir=/usr/local/mysql#'  /etc/rc.d/init.d/mysqld
 sed -i '47 s#datadir=#datadir=/data/mysql/data#'  /etc/rc.d/init.d/mysqld
 chmod 700 /etc/rc.d/init.d/mysqld
-cp $setup_dir/conf/my5.5.cnf  /etc/my.cnf
 /etc/rc.d/init.d/mysqld start
 /sbin/chkconfig --add mysqld
 /sbin/chkconfig --level 2345 mysqld on
@@ -191,13 +191,13 @@ make & make install
 
 chmod +w /usr/local/mysql
 chown -R mysql:mysql /usr/local/mysql
+cp $setup_dir/conf/my5.7.cnf  /etc/my.cnf
 /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/data/mysql/data
 sed -i 's@executing mysqld_safe@executing mysqld_safe\nexport LD_PRELOAD=/usr/local/lib/libjemalloc.so@' /usr/local/mysql/bin/mysqld_safe
 cp support-files/mysql.server /etc/rc.d/init.d/mysqld
 sed -i '46 s#basedir=#basedir=/usr/local/mysql#'  /etc/rc.d/init.d/mysqld
 sed -i '47 s#datadir=#datadir=/data/mysql/data#'  /etc/rc.d/init.d/mysqld
 chmod 700 /etc/rc.d/init.d/mysqld
-cp $setup_dir/conf/my5.7.cnf  /etc/my.cnf
 /etc/rc.d/init.d/mysqld start
 /usr/sbin/lsof -n | grep jemalloc
 /sbin/chkconfig --add mysqld
