@@ -137,10 +137,10 @@ function Install_mysql57(){
 cd $setup_dir
 
 wget https://cdn.mysql.com/archives/mysql-5.7/mysql-boost-5.7.30.tar.gz
-wget http://www.canonware.com/download/jemalloc/jemalloc-4.2.0.tar.bz2
+wget https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2
 
-tar xjf jemalloc-4.2.0.tar.bz2
-cd jemalloc-4.2.0
+tar xjf jemalloc-5.2.1.tar.bz2
+cd jemalloc-5.2.1
 ./configure
 make && make install
 echo '/usr/local/lib' > /etc/ld.so.conf.d/local.conf
