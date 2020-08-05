@@ -4,8 +4,8 @@ yum -y install gcc gcc-c++ cmake vim bison patch unzip mlocate flex wget automak
 
 #https://downloads.mysql.com/archives/community/
 
-wget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-5.7.12.tar.gz
-wget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-boost-5.7.12.tar.gz  #编译MySQL5.7需要boost支持，如果事先没有装好boost，就下载这个。
+wget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-5.7.28.tar.gz
+wget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-boost-5.7.28.tar.gz  #编译MySQL5.7需要boost支持，如果事先没有装好boost，就下载这个。
 wget https://cmake.org/files/v3.5/cmake-3.5.2.tar.gz    #编译MySQL5.7需要的cmake最低版本为2.8
 wget http://www.canonware.com/download/jemalloc/jemalloc-4.2.0.tar.bz2  #jemalloc优化MySQL内存管理
 
@@ -26,8 +26,8 @@ ldconfig
 mkdir -p /dbdata/mysql/{data,binlog,relaylog,mysql}
 chown -R mysql:mysql /dbdata/mysql
 
-tar zxvf mysql-boost-5.7.12.tar.gz
-cd mysql-5.7.12
+tar zxvf mysql-boost-5.7.28.tar.gz
+cd mysql-5.7.28
 cmake \
 -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \                     [MySQL安装的根目录]
 -DMYSQL_DATADIR=/data/mysql/data \                            [MySQL数据库文件存放目录]
