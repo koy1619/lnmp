@@ -114,7 +114,6 @@ chown -R mysql:mysql /usr/local/mysql
 ln -s /usr/local/mysql/lib/libmysqlclient.so.18 /usr/lib/libmysqlclient.so.18
 cp $setup_dir/conf/my5.5.cnf  /etc/my.cnf
 /usr/local/mysql/scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/data --user=mysql
-sed -i '/# executing mysqld_safe/a\export LD_PRELOAD=/usr/local/lib/libtcmalloc.so' /usr/local/mysql/bin/mysqld_safe
 cp support-files/mysql.server /etc/rc.d/init.d/mysqld
 sed -i '46 s#basedir=#basedir=/usr/local/mysql#'  /etc/rc.d/init.d/mysqld
 sed -i '47 s#datadir=#datadir=/data/mysql/data#'  /etc/rc.d/init.d/mysqld
@@ -239,3 +238,9 @@ Install_nginx
 Install_mysql55
 #Install_mysql57
 Install_php7
+
+
+
+service nginx restart
+service mysql restart
+service php-fpm restart
