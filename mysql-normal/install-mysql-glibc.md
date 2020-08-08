@@ -5,8 +5,11 @@ yum -y install numactl libaio
 
 /usr/sbin/groupadd mysql
 /usr/sbin/useradd -g mysql mysql -s /sbin/nologin
+
 mkdir -p /data/mysql/{data,binlog}
 chown -R mysql:mysql /data/mysql
+chmod +x /data/mysql
+
 
 
 wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.60-linux-glibc2.12-x86_64.tar.gz
@@ -23,11 +26,11 @@ wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.60-linux-glibc2.12-x86_64
 tar zxvf mysql-5.5.60-linux-glibc2.12-x86_64.tar.gz
 mv mysql-5.5.60-linux-glibc2.12-x86_64 /usr/local/mysql
 echo "export PATH=$PATH:/usr/local/mysql/bin" >> /etc/profile
-chown -R mysql.mysql /usr/local/mysql
-chmod +x -R /usr/local/mysql
-cd /usr/local/mysql
 echo '/usr/local/mysql/lib' >> /etc/ld.so.conf
 ldconfig
+
+chown -R mysql.mysql /usr/local/mysql
+
 vim /etc/my.cnf
 chmod 644 /etc/my.cnf
 
@@ -38,7 +41,7 @@ chmod 644 /etc/my.cnf
 #./bin/mysqld --defaults-file=/etc/my.cnf --initialize-insecure --user=mysql --basedir=/usr/local/mysql  --datadir=/data/mysql/data
 
 ./bin/mysqld_safe --defaults-file=/etc/my.cnf &
-./bin/mysql -uroot -p -S data/mysql.sock 
+./bin/mysql -uroot -p -S data/mysql.sock
 SHOW VARIABLES LIKE 'socket';
 grant all privileges on *.* to xiaolei @'10.10.3.%' identified by 'LX#lxiaolei' ;
 flush privileges;
