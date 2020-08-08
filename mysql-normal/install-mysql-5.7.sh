@@ -17,7 +17,7 @@ tar xjf jemalloc-5.2.1.tar.bz2
 cd jemalloc-5.2.1
 ./configure
 make && make install
-echo '/usr/local/lib' > /etc/ld.so.conf.d/local.conf
+echo '/usr/local/mysql/lib' > /etc/ld.so.conf
 ldconfig
 
 
