@@ -24,10 +24,11 @@ tar zxvf mysql-5.5.60-linux-glibc2.12-x86_64.tar.gz
 mv mysql-5.5.60-linux-glibc2.12-x86_64 /usr/local/mysql
 echo "export PATH=$PATH:/usr/local/mysql/bin" >> /etc/profile
 chown -R mysql.mysql /usr/local/mysql
-
 chmod +x -R /usr/local/mysql
 cd /usr/local/mysql
 chmod 644 /etc/my.cnf
+echo '/usr/local/mysql/lib' > /etc/ld.so.conf
+ldconfig
 vim /etc/my.cnf
 
 ./scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/data --defaults-file=/etc/my.cnf
