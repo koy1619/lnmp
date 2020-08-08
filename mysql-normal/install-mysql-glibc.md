@@ -41,6 +41,7 @@ chmod 644 /etc/my.cnf
 #./bin/mysqld --defaults-file=/etc/my.cnf --initialize-insecure --user=mysql --basedir=/usr/local/mysql  --datadir=/data/mysql/data
 
 ./bin/mysqld_safe --defaults-file=/etc/my.cnf &
+#./bin/mysqladmin -u root shutdown  -S /data/mysql8/data/mysql.sock
 ./bin/mysql -uroot -p -S data/mysql.sock
 SHOW VARIABLES LIKE 'socket';
 grant all privileges on *.* to xiaolei @'10.10.3.%' identified by 'LX#lxiaolei' ;
