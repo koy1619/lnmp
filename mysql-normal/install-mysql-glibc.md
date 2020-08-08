@@ -27,7 +27,7 @@ chown -R mysql.mysql /usr/local/mysql
 chmod +x -R /usr/local/mysql
 cd /usr/local/mysql
 chmod 644 /etc/my.cnf
-echo '/usr/local/mysql/lib' > /etc/ld.so.conf
+echo '/usr/local/mysql/lib' >> /etc/ld.so.conf
 ldconfig
 vim /etc/my.cnf
 
