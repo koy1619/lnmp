@@ -1,7 +1,7 @@
 ```
 #https://downloads.mysql.com/archives/community/
 
-yum -y install numactl
+yum -y install numactl libaio
 
 /usr/sbin/groupadd mysql
 /usr/sbin/useradd -g mysql mysql -s /sbin/nologin
