@@ -25,6 +25,7 @@ mv mysql-5.5.60-linux-glibc2.12-x86_64 /usr/local/mysql
 echo "export PATH=$PATH:/usr/local/mysql/bin" >> /etc/profile
 chown -R mysql.mysql /usr/local/mysql
 
+chmod +x -R /usr/local/mysql
 cd /usr/local/mysql
 chmod 644 /etc/my.cnf
 vim /etc/my.cnf
