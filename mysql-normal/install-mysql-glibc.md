@@ -1,4 +1,7 @@
 ```
+#https://downloads.mysql.com/archives/community/
+
+
 /usr/sbin/groupadd mysql
 /usr/sbin/useradd -g mysql mysql -s /sbin/nologin
 mkdir -p /data/mysql/{data,binlog}
