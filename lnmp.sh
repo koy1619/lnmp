@@ -122,7 +122,7 @@ chmod 700 /etc/rc.d/init.d/mysqld
 /sbin/chkconfig --add mysqld
 /sbin/chkconfig --level 2345 mysqld on
 #/sbin/mysqladmin -u root password 123456
-echo "/usr/local/mysql/lib/mysql" >> /etc/ld.so.conf
+echo "/usr/local/mysql/lib" >> /etc/ld.so.conf
 /sbin/ldconfig
 echo "export PATH=$PATH:/usr/local/mysql/bin" >> /etc/profile
 source /etc/profile
