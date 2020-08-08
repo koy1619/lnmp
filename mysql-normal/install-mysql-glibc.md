@@ -12,6 +12,9 @@ wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.60-linux-glibc2.12-x86_64
 #wget http://mirrors.sohu.com/mysql/MySQL-5.7/mysql-5.7.28-linux-glibc2.12-x86_64.tar.gz
 #wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.28-linux-glibc2.12-x86_64.tar.gz
 
+5.8
+#wget https://dev.mysql.com/get/Downloads/MySQL-5.8/mysql-8.0.20-linux-glibc2.12-x86_64.tar.xz
+
 
 tar zxvf mysql-5.5.60-linux-glibc2.12-x86_64.tar.gz
 mv mysql-5.5.60-linux-glibc2.12-x86_64 /usr/local/mysql
