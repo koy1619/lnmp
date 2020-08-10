@@ -61,3 +61,24 @@ service mysqld restart
 ```
 
 
+```sql
+-- mysql8 CREATE USER
+
+#创建用户
+#CREATE USER 'xiaolei'@'10.10.%' IDENTIFIED BY 'p@ssw0rd';
+#GRANT ALL PRIVILEGES ON *.* TO 'xiaolei'@'10.10.%' WITH GRANT OPTION;
+#FLUSH PRIVILEGES;
+
+#密码永不过期
+#ALTER USER 'xiaolei'@'10.10.%' IDENTIFIED BY 'p@ssw0rd' PASSWORD EXPIRE NEVER; 
+#更新用户的密码和插件
+#ALTER USER 'xiaolei'@'10.10.%' IDENTIFIED WITH mysql_native_password BY 'p@ssw0rd'; 
+#刷新权限
+#FLUSH PRIVILEGES;
+
+
+#完整创建用户语句
+#CREATE USER 'xiaolei'@'10.10.%' IDENTIFIED WITH mysql_native_password BY 'p@ssw0rd' PASSWORD EXPIRE NEVER; 
+#GRANT ALL PRIVILEGES ON *.* TO 'xiaolei'@'10.10.%' WITH GRANT OPTION;
+#FLUSH PRIVILEGES;
+```
