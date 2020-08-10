@@ -84,4 +84,6 @@ FLUSH PRIVILEGES;
 
 -- MySQL8.0新特性
 -- https://www.cnblogs.com/xyabk/p/10882913.html
+-- https://mytecdb.com/blogDetail.php?id=170
+-- https://www.cnblogs.com/coco-caiyuan/articles/11526994.html
 ```
