@@ -64,7 +64,7 @@ service mysqld restart
 -- Replication
 
 -- MASTER
-# $MYSQLDUMP -u $db_user -p$db_passwd -h $db_host -P $db_port --quick --master-data=2 --databases --flush-logs --force $databaseName > $BACKUP_DBPATH/$fileName
+# mysqldump -u$db_user -p$db_passwd --quick --master-data=2 --databases --flush-logs --force $databaseName > /data/bak.sql
 
 GRANT REPLICATION SLAVE ON *.* TO 'replication'@'10.10.3.33' IDENTIFIED BY 'passw2012';
 FLUSH PRIVILEGES;
