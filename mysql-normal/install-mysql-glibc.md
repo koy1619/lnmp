@@ -113,3 +113,10 @@ FLUSH PRIVILEGES;
 -- https://mytecdb.com/blogDetail.php?id=170
 -- https://www.cnblogs.com/coco-caiyuan/articles/11526994.html
 ```
+
+
+```
+#mgr
+https://www.cnblogs.com/sallyluo/p/11760304.html
+https://www.cnblogs.com/nothingonyou/p/12145348.html
+```
