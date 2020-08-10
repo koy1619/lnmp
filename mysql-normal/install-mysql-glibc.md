@@ -81,4 +81,7 @@ FLUSH PRIVILEGES;
 CREATE USER 'xiaolei'@'10.10.%' IDENTIFIED WITH mysql_native_password BY 'p@ssw0rd' PASSWORD EXPIRE NEVER; 
 GRANT ALL PRIVILEGES ON *.* TO 'xiaolei'@'10.10.%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+
+-- MySQL8.0新特性
+-- https://www.cnblogs.com/xyabk/p/10882913.html
 ```
