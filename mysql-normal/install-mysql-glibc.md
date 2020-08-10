@@ -60,6 +60,32 @@ service mysqld restart
 
 ```
 
+```sql
+-- Replication
+
+-- MASTER
+# $MYSQLDUMP -u $db_user -p$db_passwd -h $db_host -P $db_port --quick --master-data=2 --databases --flush-logs --force $databaseName > $BACKUP_DBPATH/$fileName
+
+GRANT REPLICATION SLAVE ON *.* TO 'replication'@'10.10.3.33' IDENTIFIED BY 'passw2012';
+FLUSH PRIVILEGES;
+SHOW MASTER STATUS;
+
+
+-- SLAVE
+#source /data/bak.sql
+#more /data/bak.sql
+
+CHANGE MASTER TO MASTER_HOST='10.10.3.30';
+CHANGE MASTER TO MASTER_PORT='3306';
+CHANGE MASTER TO MASTER_USER='replication';
+CHANGE MASTER TO MASTER_PASSWORD='passw2012';
+CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.000071', MASTER_LOG_POS=677831370;
+start slave;
+show slave status\G;
+```
+
+
+
 
 ```sql
 -- mysql8 CREATE USER
