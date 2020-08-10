@@ -39,6 +39,8 @@ chmod 644 /etc/my.cnf
 
 #5.7 and 8
 #./bin/mysqld --defaults-file=/etc/my.cnf --initialize-insecure --user=mysql --basedir=/usr/local/mysql  --datadir=/data/mysql/data
+#or
+#./bin/mysqld --defaults-file=/usr/local/mysql-8.0.20/etc/my.cnf --initialize-insecure --user=mysql
 
 ./bin/mysqld_safe --defaults-file=/etc/my.cnf &
 #./bin/mysqladmin -u root shutdown  -S /data/mysql8/data/mysql.sock
