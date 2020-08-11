@@ -41,6 +41,11 @@ replicate_wild_ignore_table = test.%
 sync_binlog = 1
 
 
+#GTID
+#gtid_mode=on
+#enforce-gtid-consistency=on
+
+
 relay-log = /data/mysql8/binlog/mysql-relay-bin
 relay_log_index = /data/mysql8/binlog/mysql-relay-bin.index
 binlog_format = mixed
