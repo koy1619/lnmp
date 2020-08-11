@@ -67,7 +67,11 @@ service mysqld restart
 -- MASTER
 # mysqldump -u$db_user -p$db_passwd --quick --master-data=2 --databases --flush-logs --force $databaseName > /data/bak.sql
 
-RESET MASTER;
+stop slave;
+reset slave all;
+reset master;
+show slave status\G;
+
 GRANT REPLICATION SLAVE ON *.* TO 'replication'@'10.10.3.33' IDENTIFIED BY 'passw2012';
 FLUSH PRIVILEGES;
 SHOW MASTER STATUS;
@@ -78,8 +82,11 @@ SHOW MASTER STATUS;
 #more /data/bak.sql
 
 -- Binlog Replication
-STOP SLAVE;
-RESET SLAVE ALL;
+stop slave;
+reset slave all;
+reset master;
+show slave status\G;
+
 CHANGE MASTER TO MASTER_HOST='10.10.3.30';
 CHANGE MASTER TO MASTER_PORT=3306;
 CHANGE MASTER TO MASTER_USER='replication';
@@ -90,8 +97,11 @@ show slave status\G;
 
 
 -- GTID Replication
-STOP SLAVE;
-RESET SLAVE ALL;
+stop slave;
+reset slave all;
+reset master;
+show slave status\G;
+
 CHANGE MASTER TO MASTER_HOST='10.10.3.30';
 CHANGE MASTER TO MASTER_PORT=3306;
 CHANGE MASTER TO MASTER_USER='replication';
@@ -134,7 +144,15 @@ FLUSH PRIVILEGES;
 
 
 ```
-#mgr
+#mgr组复制
 https://www.cnblogs.com/sallyluo/p/11760304.html
 https://www.cnblogs.com/nothingonyou/p/12145348.html
+
+#GTID复制
+https://www.cnblogs.com/kindnull/p/9051358.html
+https://www.cnblogs.com/kevingrace/p/5569753.html
+
+#多源复制
+https://imysql.com/2017/04/07/mysql-5-7-3node-ha-base-on-multi-source-rep-and-keepalived.shtml
+https://www.cnblogs.com/xuanzhi201111/p/5151666.html
 ```
