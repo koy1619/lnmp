@@ -2,6 +2,7 @@ server {
         listen 443 ssl;
         server_name  malai-jump.test.com;
 
+  #ssl on;
   ssl_certificate   /etc/nginx/sslkey/1_jumpserver.org_bundle.crt;
   ssl_certificate_key  /etc/nginx/sslkey/2_jumpserver.org.key;
   ssl_session_timeout 5m;

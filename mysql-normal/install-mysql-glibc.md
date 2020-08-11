@@ -152,7 +152,7 @@ https://www.cnblogs.com/nothingonyou/p/12145348.html
 https://www.cnblogs.com/kindnull/p/9051358.html
 https://www.cnblogs.com/kevingrace/p/5569753.html
 
-#多源复制
+#多源复制(多主一从)
 https://imysql.com/2017/04/07/mysql-5-7-3node-ha-base-on-multi-source-rep-and-keepalived.shtml
 https://www.cnblogs.com/xuanzhi201111/p/5151666.html
 ```
