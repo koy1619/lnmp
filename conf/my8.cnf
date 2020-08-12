@@ -51,6 +51,7 @@ relay_log_index = /data/mysql8/binlog/mysql-relay-bin.index
 binlog_format = mixed
 
 
+secure_file_priv =
 
  
 innodb_data_file_path = ibdata1:512M;ibdata2:512M:autoextend
