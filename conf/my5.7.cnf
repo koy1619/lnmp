@@ -79,6 +79,9 @@ max_connections = 16384
 log-queries-not-using-indexes = true
 max_connect_errors = 100000
 
+ft_min_word_len=2
+validate_password = off
+
 [mysqldump]
 quick
 max_allowed_packet = 50M
