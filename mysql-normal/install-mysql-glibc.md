@@ -65,7 +65,7 @@ service mysqld restart
 ```sql
 
 -- MASTER
-# mysqldump -u$db_user -p$db_passwd --quick --master-data=2 --databases --flush-logs --force $databaseName > /data/bak.sql
+# mysqldump -u$db_user -p$db_passwd --quick --single-transaction --master-data=2 --databases --flush-logs --force $databaseName > /data/bak.sql
 
 stop slave;
 reset slave all;
