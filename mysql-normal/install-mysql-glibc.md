@@ -66,6 +66,7 @@ service mysqld restart
 
 -- MASTER
 # mysqldump -u$db_user -p$db_passwd --quick --single-transaction --master-data=2 --databases --flush-logs --force $databaseName > /data/bak.sql
+# mysqldump --skip-opt  -uroot -p test qqq123 -t -c --skip-extended-insert  > qqq.sql
 
 stop slave;
 reset slave all;
@@ -107,7 +108,6 @@ CHANGE MASTER TO MASTER_PORT=3306;
 CHANGE MASTER TO MASTER_USER='replication';
 CHANGE MASTER TO MASTER_PASSWORD='passw2012';
 CHANGE MASTER TO MASTER_AUTO_POSITION=1;
-
 start slave;
 show slave status\G;
 ```
