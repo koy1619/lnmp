@@ -164,47 +164,50 @@ cd php-7.3.20
  --with-fpm-user=www \
  --with-fpm-group=www \
  --with-config-file-path=/usr/local/php/etc \
- --disable-rpath \
- --enable-soap \
+ --with-mysqli=mysqlnd \
+ --with-pdo-mysql=mysqlnd \
  --with-libxml-dir \
  --with-xmlrpc \
  --with-openssl \
  --with-mhash \
  --with-pcre-regex \
  --with-zlib \
- --enable-bcmath \
- --with-bz2 \
- --enable-calendar \
- --with-curl \
- --enable-exif \
- --with-pcre-dir \
- --enable-ftp \
  --with-gd \
  --with-openssl-dir \
  --with-jpeg-dir \
  --with-png-dir \
  --with-zlib-dir \
  --with-freetype-dir \
- --enable-gd-jis-conv \
+ --with-bz2 \
+ --with-curl \
+ --with-pcre-dir \
  --with-gettext \
  --with-gmp \
  --with-mhash \
- --enable-mbstring \
  --with-onig \
- --with-mysqli=mysqlnd \
- --with-pdo-mysql=mysqlnd \
  --with-zlib-dir \
  --with-readline \
+ --with-libxml-dir \
+ --with-xsl \
+ --with-pear \
+ --enable-soap \
+ --enable-bcmath \
+ --enable-calendar \
+ --enable-exif \
+ --enable-ftp \
+ --enable-gd-jis-conv \
+ --enable-mbstring \
  --enable-shmop \
  --enable-sockets \
  --enable-sysvmsg \
  --enable-sysvsem \
  --enable-sysvshm \
  --enable-wddx \
- --with-libxml-dir \
- --with-xsl \
  --enable-zip \
- --with-pear
+ --enable-xml \
+ --enable-mbregex \
+ --enable-pcntl \
+ --disable-rpath
 
 make
 make install
