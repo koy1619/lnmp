@@ -195,7 +195,6 @@ cd php-7.3.20
  --enable-calendar \
  --enable-exif \
  --enable-ftp \
- --enable-gd-jis-conv \
  --enable-mbstring \
  --enable-shmop \
  --enable-sockets \
