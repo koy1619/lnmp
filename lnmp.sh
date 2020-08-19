@@ -15,7 +15,7 @@ sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
 
 yum makecache
 
-yum -y install gcc gcc-c++ make bison patch unzip pcre-devel pam-develmlocate flex wget automake autoconf gd gd-devel cpp gettext readline readline-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel libidn libidn-devel openldap openldap-devel openldap-clients openldap-servers nss_ldap expat-devel libtool libtool-ltdl-devel bison openssl openssl-devel libcurl libcurl-devel gmp gmp-devel libmcrypt libmcrypt-devel libxslt libxslt-devel gdbm gdbm-devel db4-devel libXpm-devel libX11-devel xmlrpc-c xmlrpc-c-devel libicu-devel libmemcached-devel libzip net-tools yum-utils vim telnet cmake lsof
+yum -y install gcc gcc-c++ make bison patch unzip pcre-devel pam-develmlocate flex wget automake autoconf gd gd-devel cpp gettext readline readline-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel libidn libidn-devel openldap openldap-devel openldap-clients openldap-servers nss_ldap expat-devel libtool libtool-ltdl-devel bison openssl openssl-devel libcurl libcurl-devel gmp gmp-devel libmcrypt libmcrypt-devel libxslt libxslt-devel gdbm gdbm-devel db4-devel libXpm-devel libX11-devel xmlrpc-c xmlrpc-c-devel libicu-devel libmemcached-devel libzip mcrypt mhash net-tools yum-utils vim telnet cmake lsof
 
 yum -y update nss
 
@@ -60,7 +60,7 @@ cd nginx-1.18.0
 make
 make install
 
-echo "export PATH=$PATH:/usr/local/nginx/bin" >> /etc/profile
+echo "export PATH=$PATH:/usr/local/nginx/sbin" >> /etc/profile
 source /etc/profile
 
 cp $setup_dir/conf/nginx /etc/init.d/nginx
@@ -223,6 +223,35 @@ chmod 755 /etc/init.d/php-fpm
 /sbin/chkconfig php-fpm on
 service php-fpm start
 
+echo "install Zend Opcache"
+cd ext/opcache/
+/usr/local/php/bin/phpize 
+./configure --with-php-config=/usr/local/php/bin/php-config  && make && make install
+echo "zend_extension=opcache.so
+[opcache]
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1
+opcache.enable_cli=1" >> /usr/local/php/etc/php.ini
+service php-fpm restart
+
+
+###扩展安装
+#http://pecl.php.net/packages.php
+echo "install mcrypt.so"
+cd $setup_dir
+wget http://pecl.php.net/get/mcrypt-1.0.3.tgz
+tar xf mcrypt-1.0.3.tgz 
+cd mcrypt-1.0.3
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config  && make && make install
+echo "extension=mcrypt.so" >> /usr/local/php/etc/php.ini
+service php-fpm restart
+
+#/usr/local/php/bin/pecl search mcrypt
+#/usr/local/php/bin/pecl install mcrypt
 
 cat <<EOF >  /home/wwwroot/index.php
 <?php
