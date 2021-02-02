@@ -51,6 +51,7 @@ cd nginx-1.18.0
 --group=www \
 --prefix=/usr/local/nginx \
 --with-pcre=$setup_dir/pcre-8.44 \
+###### --with-openssl=/usr/local/openssl \  ######
 --with-http_stub_status_module \
 --with-http_ssl_module \
 --with-http_gzip_static_module \
