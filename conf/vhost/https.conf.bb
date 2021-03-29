@@ -9,6 +9,15 @@ server {
   ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
   ssl_prefer_server_ciphers on;
+  
+  
+    #ssl                  on;
+    #ssl_certificate      /usr/local/nginx/conf/vhost/certs/server.cer;
+    #ssl_certificate_key  /usr/local/nginx/conf/vhost/certs/server.key;
+    #ssl_session_timeout  5m;
+    #ssl_protocols  TLSv1.1 TLSv1.2;
+    #ssl_ciphers  HIGH:!aNULL:!eNULL:!SSLv2:!SSLv3;
+    #ssl_prefer_server_ciphers   on;
 
 
         location / {
