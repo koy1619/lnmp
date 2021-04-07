@@ -1,5 +1,55 @@
 [client]
 port            = 3306
+socket          = /data/mysql/data/mysql.sock
+
+
+[mysqld]
+port            = 3306
+socket          = /data/mysql/data/mysql.sock
+skip-external-locking
+key_buffer_size = 1G
+max_allowed_packet = 100M
+table_open_cache = 512
+sort_buffer_size = 8M
+read_buffer_size = 20M
+join_buffer_size = 2M
+read_rnd_buffer_size = 20M
+myisam_sort_buffer_size = 128M
+
+thread_cache_size = 100
+query_cache_size = 100M
+query_cache_limit = 2M
+tmp_table_size=200M
+
+lower_case_table_names = 1
+log_timestamps = SYSTEM
+
+sql_mode ='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+#set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+#set @@global.sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+
+
+
+basedir = /usr/local/mysql
+datadir = /data/mysql/data
+
+skip-name-resolve
+
+log-bin=/data/mysql/binlog/mysql-bin
+expire_logs_days = 7
+server-id       = 8828
+
+log_slave_updates = on
+replicate_wild_ignore_table = mysql.%
+replicate_wild_ignore_table = test.%
+#replicate_wild_do_table = test2.%
+sync_binlog = 1
+
+#GTID
+#gtid_mode=on
+[root@iZuf624eh34endzwu8ql4rZ lnmp]# cat /etc/my.cnf
+[client]
+port            = 3306
 socket          = /data/mysqldata/mysql.sock
 
 
@@ -31,11 +81,11 @@ sql_mode ='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_B
 
 
 basedir = /usr/local/mysql
-datadir = /data/mysqldata
+datadir = /data/mysql/data
 
 skip-name-resolve
 
-log-bin=/data/binlog/mysql-bin
+log-bin=/data/mysql/binlog/mysql-bin
 expire_logs_days = 7
 server-id       = 8828
 
@@ -49,15 +99,15 @@ sync_binlog = 1
 #gtid_mode=on
 #enforce-gtid-consistency=on
 
-relay-log = /data/binlog/mysql-relay-bin
-relay_log_index = /data/binlog/mysql-relay-bin.index
+relay-log = /data/mysql/binlog/mysql-relay-bin
+relay_log_index = /data/mysql/binlog/mysql-relay-bin.index
 binlog_format = mixed
 
 
 
  
 innodb_data_file_path = ibdata1:512M;ibdata2:512M:autoextend
-innodb_log_group_home_dir = /data/binlog/
+innodb_log_group_home_dir = /data/mysql/binlog/
 innodb_file_per_table = 1
 innodb_buffer_pool_size = 13G
 innodb_log_file_size = 1G
@@ -76,10 +126,10 @@ character_set_server =  utf8
 
 max_connections = 16384
 #general-log = on
-#general_log_file = /data/binlog/general.log
+#general_log_file = /data/mysql/binlog/general.log
 #slow-query-log = on
 #long_query_time = 3
-#slow_query_log_file = /data/binlog/slowquery_3.log
+#slow_query_log_file = /data/mysql/binlog/slowquery_3.log
 log-queries-not-using-indexes = true
 max_connect_errors = 100000
 
