@@ -157,8 +157,8 @@ mkdir -p /data/mysql/{data,binlog}
 chown -R mysql:mysql /data/mysql
 
 cd $setup_dir
-tar zxvf mysql-boost-5.7.12.tar.gz
-cd mysql-5.7.12
+tar zxvf mysql-boost-5.7.30.tar.gz
+cd mysql-boost-5.7.30
 cmake \
 -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 -DMYSQL_DATADIR=/data/mysql/data \
