@@ -129,6 +129,84 @@ echo "export PATH=$PATH:/usr/local/mysql/bin" >> /etc/profile
 source /etc/profile
 }
 
+
+#######################Install Mysql5.7#######################
+
+function Install_mysql57(){
+
+#https://downloads.mysql.com/archives/community/
+
+cd $setup_dir
+
+wget https://cdn.mysql.com/archives/mysql-5.7/mysql-boost-5.7.30.tar.gz
+wget https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2
+
+tar xjf jemalloc-5.2.1.tar.bz2
+cd jemalloc-5.2.1
+./configure
+make && make install
+echo "/usr/local/mysql/lib" >> /etc/ld.so.conf
+/sbin/ldconfig
+
+
+
+/usr/sbin/groupadd mysql
+/usr/sbin/useradd -g mysql mysql -s /sbin/nologin
+
+mkdir -p /data/mysql/{data,binlog}
+chown -R mysql:mysql /data/mysql
+
+cd $setup_dir
+tar zxvf mysql-boost-5.7.12.tar.gz
+cd mysql-5.7.12
+cmake \
+-DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
+-DMYSQL_DATADIR=/data/mysql/data \
+-DSYSCONFDIR=/etc \
+-DMYSQL_USER=mysql \
+-DMYSQL_UNIX_ADDR=/data/mysql/mysql.sock \
+-DMYSQL_TCP_PORT=3306 \
+-DDEFAULT_CHARSET=utf8 \
+-DDEFAULT_COLLATION=utf8_general_ci \
+-DEXTRA_CHARSETS=all \
+-DWITH_MYISAM_STORAGE_ENGINE=1 \
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DWITH_PARTITION_STORAGE_ENGINE=1 \
+-DWITH_FEDERATED_STORAGE_ENGINE=1 \
+-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \
+-DWITH_ARCHIVE_STORAGE_ENGINE=1 \
+-DWITH_MEMORY_STORAGE_ENGINE=1 \
+-DWITH_READLINE=1 \
+-DENABLED_LOCAL_INFILE=1 \
+-DWITH_BOOST=boost
+
+make & make install
+
+
+chmod +w /usr/local/mysql
+chown -R mysql:mysql /usr/local/mysql
+cp $setup_dir/conf/my5.7.cnf  /etc/my.cnf
+/usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/data/mysql/data
+sed -i 's@executing mysqld_safe@executing mysqld_safe\nexport LD_PRELOAD=/usr/local/lib/libjemalloc.so@' /usr/local/mysql/bin/mysqld_safe
+cp support-files/mysql.server /etc/rc.d/init.d/mysqld
+sed -i '46 s#basedir=#basedir=/usr/local/mysql#'  /etc/rc.d/init.d/mysqld
+sed -i '47 s#datadir=#datadir=/data/mysql/data#'  /etc/rc.d/init.d/mysqld
+chmod 700 /etc/rc.d/init.d/mysqld
+/etc/rc.d/init.d/mysqld start
+/usr/sbin/lsof -n | grep jemalloc
+/sbin/chkconfig --add mysqld
+/sbin/chkconfig --level 2345 mysqld on
+#/sbin/mysqladmin -u root password 123456
+echo "/usr/local/mysql/lib/mysql" >> /etc/ld.so.conf
+/sbin/ldconfig
+echo "export PATH=$PATH:/usr/local/mysql/bin" >> /etc/profile
+source /etc/profile
+#mysql
+#select version();
+#show global variables like "%datadir%";
+#status;
+}
+
  
 #######################Install PHP#######################
 
@@ -267,8 +345,8 @@ EOF
 
 
 Install_nginx
-Install_mysql55
-#Install_mysql57
+#Install_mysql55
+Install_mysql57
 Install_php7
 
 
