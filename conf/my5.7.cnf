@@ -50,12 +50,12 @@ sync_binlog = 1
 [root@iZuf624eh34endzwu8ql4rZ lnmp]# cat /etc/my.cnf
 [client]
 port            = 3306
-socket          = /data/mysqldata/mysql.sock
+socket          = /data/mysql/data/mysql.sock
 
 
 [mysqld]
 port            = 3306
-socket          = /data/mysqldata/mysql.sock
+socket          = /data/mysql/data/mysql.sock
 skip-external-locking
 key_buffer_size = 1G
 max_allowed_packet = 100M
