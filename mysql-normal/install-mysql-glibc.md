@@ -35,7 +35,7 @@ vim /etc/my.cnf
 chmod 644 /etc/my.cnf
 
 
-./scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/data --defaults-file=/etc/my.cnf
+./scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/data --defaults-file=/etc/my.cnf --user=mysql
 
 #5.7 and 8
 #./bin/mysqld --defaults-file=/etc/my.cnf --initialize-insecure --user=mysql --basedir=/usr/local/mysql  --datadir=/data/mysql/data
