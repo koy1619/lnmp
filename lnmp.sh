@@ -35,7 +35,8 @@ cd $setup_dir
 
 mkdir -p /home/wwwroot/
 
-wget http://ftp.pcre.org/pub/pcre/pcre-8.44.tar.gz
+#wget http://ftp.pcre.org/pub/pcre/pcre-8.44.tar.gz
+wget https://sourceforge.net/projects/pcre/files/pcre/8.44/pcre-8.44.tar.gz
 tar -zxvf pcre-8.44.tar.gz
 cd pcre-8.44
 ./configure --prefix=/usr/local/pcre
