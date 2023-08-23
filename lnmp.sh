@@ -359,3 +359,62 @@ Install_php7
 service nginx restart
 service mysql restart
 service php-fpm restart
+
+
+
+#######################Install PHP8#######################
+
+
+yum install oniguruma-devel -y
+
+
+wget http://ftp.gnu.org/pub/gnu/libiconv/
+tar -zxvf libiconv-1.14.tar.gz
+cd libiconv-1.14
+./configure --prefix=/usr/local/libiconv make && make install
+
+
+
+wget --no-check-certificate https://www.php.net/distributions/php-8.0.0.tar.gz
+tar zxvf php-8.0.0.tar.gz
+cd php-8.0.0
+./configure \
+ --prefix=/usr/local/php-8.0.0 \
+ --enable-fpm \
+ --with-fpm-user=www \
+ --with-fpm-group=www \
+ --with-config-file-path=/usr/local/php-8.0.0/etc \
+ --with-iconv=/usr/local/libiconv/bin \
+ --with-mysqli=mysqlnd \
+ --with-pdo-mysql=mysqlnd \
+ --with-openssl \
+ --with-mhash \
+ --with-zlib \
+ --with-openssl-dir \
+ --with-zlib-dir \
+ --with-bz2 \
+ --with-curl \
+ --with-gettext \
+ --with-gmp \
+ --with-mhash \
+ --with-zlib-dir \
+ --with-readline \
+ --with-xsl \
+ --with-pear \
+ --enable-soap \
+ --enable-bcmath \
+ --enable-calendar \
+ --enable-exif \
+ --enable-ftp \
+ --enable-mbstring \
+ --enable-shmop \
+ --enable-sockets \
+ --enable-sysvmsg \
+ --enable-sysvsem \
+ --enable-sysvshm \
+ --enable-xml \
+ --enable-mbregex \
+ --enable-pcntl \
+ --disable-rpath
+
+make && make install
