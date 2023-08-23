@@ -418,3 +418,16 @@ cd php-8.0.0
  --disable-rpath
 
 make && make install
+
+
+cp php.ini-production /usr/local/php-8.0.0/etc/php.ini
+cp sapi/fpm/init.d.php-fpm /etc/init.d/
+chmod 755 /etc/init.d/php-fpm
+
+
+cd /usr/local/php-8.0.0/etc/php-fpm.d
+cp www.conf.default www.conf
+
+
+cd /usr/local/php-8.0.0/etc/
+cp php-fpm.conf.default php-fpm.conf
